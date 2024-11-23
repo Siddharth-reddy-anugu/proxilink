@@ -1,0 +1,148 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Chat Container */
+.chat-container {
+    max-width: 800px;
+    width: 100%;
+    background-color: #1c1c1c; /* Slightly lighter dark background */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap between elements */
+}
+
+.chat-container h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Chat Window */
+.chat-window {
+    max-height: 300px; /* Reduced height for the chat window */
+    height: 300px;
+    overflow-y: auto; /* Makes the window scrollable when content overflows */
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    border: 1px solid #444;
+    color: #ffffff;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    flex-grow: 1;
+}
+
+.chat-message {
+    background-color: #333;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #f1f1f1;
+}
+
+/* Group Input Section below the chat window */
+.group-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+input, button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    font-size: 16px;
+    color: #e0e0e0;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+input:focus, button:focus {
+    outline: none;
+    border: 1px green;
+}
+
+button {
+    background-color:rgb(55, 224, 55);
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color:green;
+}
+
+/* Message Input Section */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap between input and button */
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f1f1f1;
+    margin-bottom: 10px;
+}
+
+/* Upload File Button */
+#uploadFileBtn {
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#uploadFileBtn:hover {
+    background-color: #218838;
+}
+
+#uploadFile {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .chat-container {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .chat-container h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+}

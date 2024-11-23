@@ -1,0 +1,97 @@
+/* General Page Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container Styling */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #1e1e1e; /* Slightly lighter dark background */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    padding: 40px 30px;
+    transition: transform 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Login Form Styling */
+.login-form {
+    text-align: center;
+}
+
+.login-form h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #ffffff; /* White text for header */
+    margin-bottom: 20px;
+}
+
+/* Input Fields Styling */
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #444; /* Darker border */
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background-color: #333; /* Dark input background */
+    color: #e0e0e0; /* Light text */
+    transition: border 0.3s ease;
+}
+
+input:focus {
+    border: 2px solid #007bff; /* Blue border on focus */
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 14px;
+    background-color:rgb(79, 215, 79);
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: green; /* Darker blue on hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .login-form h1 {
+        font-size: 24px;
+    }
+}

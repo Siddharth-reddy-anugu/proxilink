@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Chat Sphere</title>
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Welcome to Chat Sphere</h1>
+
+        <!-- Chat Window -->
+        <div class="chat-window" id="chatWindow"></div>
+        
+        <!-- Group Input Section below the chat window -->
+        <div class="group-input">
+            <input type="text" id="groupName" placeholder="Enter group name" required>
+            <button id="joinGroupBtn">Join Group</button>
+        </div>
+        
+        <!-- Message Input Section -->
+        <div class="input-section">
+            <form id="chatForm">
+                <input type="text" id="messageInput" placeholder="Type your message..." required>
+                
+                <button type="submit" id="sendMessageBtn">Send</button>
+                <!-- File upload button -->
+                <button type="button" id="uploadFileBtn">File</button>
+                <input type="file" id="uploadFile" style="display: none;">
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const username = localStorage.getItem('username');
+        let groupName = '';
+        
+        // Join a group
+        document.getElementById('joinGroupBtn').addEventListener('click', () => {
+            groupName = document.getElementById('groupName').value;
+            socket.emit('joinGroup', { username, groupName });
+        });
+
+        // Send a message
+        document.getElementById('chatForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = document.getElementById('messageInput').value;
+            socket.emit('sendMessage', { username, groupName, message });
+            document.getElementById('messageInput').value = '';
+        });
+
+        // Handle file upload button click
+        document.getElementById('uploadFileBtn').addEventListener('click', () => {
+            document.getElementById('uploadFile').click();
+        });
+
+        // Handle file upload form submission
+        document.getElementById('uploadFile').addEventListener('change', (e) => {
+            const formData = new FormData();
+            formData.append('file', e.target.files[0]);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                socket.emit('sendFile', { username, groupName, filePath: data.filePath });
+            });
+        });
+
+        // Listen for messages
+        socket.on('message', (message) => {
+            const chatWindow = document.getElementById('chatWindow');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            chatWindow.appendChild(messageElement);
+        });
+    </script>
+</body>
+</html>
